@@ -23,7 +23,7 @@ app.post("/", function(request, response) {
       var weatherData = JSON.parse(data);
       console.log(weatherData);
       if(weatherData.cod != 200){
-        response.send("Invalid city name. Please try again.");
+        response.send("Invalid city name. Please try again.<br/> <a style='margin-left:5px;' href='/'>Go Back</a>");
       }else{
         var temp = weatherData.main.temp;
         var desc = weatherData.weather[0].description;
@@ -33,7 +33,9 @@ app.post("/", function(request, response) {
         response.write("<h1>Temperature at " + cityName + " is " + temp +" degrees celcius , </h1>");
         response.write("<h2>Weather feels like " + desc + " </h2>");
         response.write("<img src='" + icoURL  + "'>");
+        response.write("<br><a style='margin-left:30px;' href='/'>Go Back</a>")
         response.write("</div>");
+
         response.send();
       }
       //Cant have 2 response or will error/crash
